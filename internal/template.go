@@ -23,6 +23,7 @@ type StructColumn struct {
 	Type    string
 	Tag     string
 	Comment string
+	IsNull  bool
 }
 
 type StructTemplateDB struct {
@@ -38,11 +39,18 @@ func (t *StructTemplate) AssemblyColumns(tbColumns []*TableColumn) []*StructColu
 	tplColumns := make([]*StructColumn, 0, len(tbColumns))
 	for _, column := range tbColumns {
 		tag := fmt.Sprintf("`"+"json:"+"\"%s\" db:\"%s\""+"`", column.ColumnName, column.ColumnName)
+		var typ string
+		if column.IsNullable != "YES" {
+			typ = DBTypeToStructType[column.DataType]
+		} else {
+			typ = DBNullTypeToStructType[column.DataType]
+		}
 		tplColumns = append(tplColumns, &StructColumn{
 			Name:    column.ColumnName,
-			Type:    DBTypeToStructType[column.DataType],
+			Type:    typ,
 			Tag:     tag,
 			Comment: column.ColumnComment,
+			IsNull:  column.IsNullable == "YES",
 		})
 	}
 

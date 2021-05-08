@@ -36,7 +36,32 @@ type Table struct {
 }
 
 var DBNullTypeToStructType = map[string]string{
-	"int": "sql.NullInt32",
+	"int":        "pkg.Int",
+	"tinyint":    "pkg.Int",
+	"smallint":   "pkg.Int",
+	"mediumint":  "pkg.Int",
+	"bigint":     "pkg.Int",
+	"bit":        "pkg.NullBit",
+	"bool":       "pkg.Bool",
+	"enum":       "pkg.String",
+	"set":        "pkg.String",
+	"varchar":    "pkg.String",
+	"char":       "pkg.String",
+	"tinytext":   "pkg.String",
+	"mediumtext": "pkg.String",
+	"text":       "pkg.String",
+	"longtext":   "pkg.String",
+	"blob":       "pkg.String",
+	"tinyblob":   "pkg.String",
+	"mediumblob": "pkg.String",
+	"longblob":   "pkg.String",
+	"date":       "pkg.Time",
+	"datetime":   "pkg.Time",
+	"timestamp":  "pkg.Time",
+	"time":       "pkg.Time",
+	"float":      "pkg.Float",
+	"double":     "pkg.Float",
+	"decimal":    "decimal.NullDecimal",
 }
 
 var DBTypeToStructType = map[string]string{
@@ -45,7 +70,7 @@ var DBTypeToStructType = map[string]string{
 	"smallint":   "int",
 	"mediumint":  "int64",
 	"bigint":     "int64",
-	"bit":        "int",
+	"bit":        "pkg.Bit",
 	"bool":       "bool",
 	"enum":       "string",
 	"set":        "string",

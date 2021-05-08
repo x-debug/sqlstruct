@@ -53,7 +53,7 @@ var sql2structCmd = &cobra.Command{
 		defer file.Close()
 		w := bufio.NewWriter(file)
 
-		w.WriteString(fmt.Sprintf("package %s\n\nimport (\n  \"time\"\n  \"github.com/shopspring/decimal\"\n)\n\n", packageName))
+		w.WriteString(fmt.Sprintf("package %s\n\nimport (\n  \"time\"\n  \"github.com/shopspring/decimal\"\n  \"github.com/x-debug/sqlstruct/pkg\"\n)\n\n", packageName))
 
 		for _, table := range tables {
 			columns, err := dbModel.GetColumns(dbName, table.Name)

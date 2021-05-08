@@ -1,7 +1,7 @@
 .PHONY: test 
 # test 
 test:
-	go test ./...
+	go test -count=1 ./... # no cached
 
 build:
 	@go build -o sqlstruct cmd/main.go
