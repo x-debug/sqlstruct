@@ -14,6 +14,10 @@ type Float struct {
 	sql.NullFloat64
 }
 
+func NewFloat(value float64, valid bool) Float {
+	return Float{NullFloat64: sql.NullFloat64{Valid: valid, Float64: value}}
+}
+
 func (f *Float) UnmarshalJSON(data []byte) error {
 	if bytes.Equal(data, nullBytes) {
 		f.Valid = false

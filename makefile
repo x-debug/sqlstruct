@@ -3,6 +3,9 @@
 test:
 	go test ./...
 
+build:
+	@go build -o sqlstruct cmd/main.go
+
 # show help
 help:
 	@echo ''

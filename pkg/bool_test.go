@@ -7,7 +7,7 @@ import (
 
 func assertJSON(t *testing.T, data []byte, ok string, msg string) {
 	if string(data) != ok {
-		t.Errorf("assertJSON: %s", msg)
+		t.Errorf("assertJSON: %s, expected: %s, actual: %s", msg, ok, string(data))
 	}
 }
 
@@ -17,7 +17,7 @@ func assertUnmarshalBool(t *testing.T, unvalid Bool, ok Bool, msg string) {
 	}
 }
 
-func TestMarshalJSON(t *testing.T) {
+func TestMarshalJSONBool(t *testing.T) {
 	//test true value
 	typ1 := NewBool(true, true)
 	d1, err := json.Marshal(&typ1)
@@ -49,7 +49,7 @@ func TestMarshalJSON(t *testing.T) {
 	assertJSON(t, d3, "null", "bool value(nil) error")
 }
 
-func TestUnmarshalJSON(t *testing.T) {
+func TestUnmarshalJSONBool(t *testing.T) {
 	var typ1 Bool
 	err := json.Unmarshal([]byte("true"), &typ1)
 	if err != nil {

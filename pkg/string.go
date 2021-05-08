@@ -11,6 +11,10 @@ type String struct {
 	sql.NullString
 }
 
+func NewString(value string, valid bool) String {
+	return String{NullString: sql.NullString{String: value, Valid: valid}}
+}
+
 func (s *String) UnmarshalJSON(data []byte) error {
 	if bytes.Equal(data, nullBytes) {
 		s.Valid = false

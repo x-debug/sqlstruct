@@ -5,10 +5,15 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"time"
 )
 
 type Time struct {
 	sql.NullTime
+}
+
+func NewTime(value time.Time, valid bool) Time {
+	return Time{NullTime: sql.NullTime{Time: value, Valid: valid}}
 }
 
 func (t Time) MarshalJSON() ([]byte, error) {

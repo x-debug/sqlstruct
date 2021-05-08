@@ -12,6 +12,10 @@ type Int struct {
 	sql.NullInt64
 }
 
+func NewInt(value int64, valid bool) Int {
+	return Int{NullInt64: sql.NullInt64{Valid: valid, Int64: value}}
+}
+
 func (v *Int) UnmarshalJSON(b []byte) error {
 	if bytes.Equal(b, nullBytes) {
 		v.Valid = false
